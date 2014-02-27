@@ -1,10 +1,10 @@
 var AlchemyAPI = require('./alchemyapi');
 var alchemyapi = new AlchemyAPI();
 
-var getWords = function(type, query){
+var prefiltered = {};
+var finished = false;
 
-  var prefiltered = {};
-  var finished = false;
+var getWords = function(type, query){
 
   var entities = function() {
     alchemyapi.entities(type, query, { 'sentiment':1 }, function(response) {
@@ -28,27 +28,37 @@ var getWords = function(type, query){
   entities();
   keywords();
   concepts();
+};
+
+var getKeywords = function(url, res){
 
   var results = {};
+  prefiltered = {};
+  finished = false;
+
+  getWords('url',url);
 
   var wait = setInterval(function(){
     if (finished === true) {
+      // filter out duplicates
       for (var i in prefiltered){
         for (var entry in prefiltered[i]){
           results[prefiltered[i][entry]['text']] = prefiltered[i][entry]['text'];
         }
       }
-      for (var j in results){
-        console.log(results[j]);
-      }
+
+      res.end(JSON.stringify(results));
       clearInterval(wait);
     }
   }
   , 300);
 };
 
-exports.getWords = getWords;
+
 // getWords(process.argv[2], process.argv[3]);
+// exports.getWords = getWords;
+
+
 
 // function text(req, res, output) {
 //   alchemyapi.text('url', demo_url, {}, function(response) {
