@@ -1,7 +1,7 @@
 WikiViz
 =======
 
-Graph Visualization of Wikipedia Articles and Embedded Links
+Graph Visualization of Wikipedia Articles and their Embedded Links
 
 Deployed at: http://pure-wildwood-3935.herokuapp.com/#/
 
