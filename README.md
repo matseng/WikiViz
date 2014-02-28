@@ -3,7 +3,7 @@ WikiViz
 
 Graph Visualization of Wikipedia Articles and Embedded Links
 
-Deployed at: http://_________________
+Deployed at: http://pure-wildwood-3935.herokuapp.com/#/
 
 Description: Visualize and explore a graph of the embedded links within a Wikipedia article. The initial Wikipedia article title is the central node and titles of embedded links appear as children nodes distributed around the central node. Using NLP, our algorithm compares the content of the initial article and contend of its embedded links - embedded links with similar content appear larger and closer to the intial article title (PENDING).
 
